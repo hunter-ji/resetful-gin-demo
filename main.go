@@ -8,10 +8,13 @@ import (
 )
 
 func main() {
+
+	// models.CreateDB()
+
 	r := gin.Default()
 	r.Use(cors.Default())
 	r.Use(utils.Authorize())
-	routers.LoadUser(r)
 	routers.LoadTodo(r)
+	routers.LoadUser(r)
 	r.Run()
 }
