@@ -32,7 +32,7 @@ func Authorize() gin.HandlerFunc {
 		// 当路由不在白名单之中时进行token检测
 		if !whiteList(c.Request.URL) {
 			var queryToken QueryToken
-			if c.ShouldBind(&queryToken) != nil {
+			if c.ShouldBindQuery(&queryToken) != nil {
 				fmt.Println(queryToken.Token)
 				c.AbortWithStatusJSON(200, gin.H{
 					"code":    50008,
@@ -40,7 +40,6 @@ func Authorize() gin.HandlerFunc {
 				})
 				return
 			}
-			fmt.Println(queryToken.Token)
 
 			rdb := RedisConnect()
 			nameValue, nameErr := rdb.HGet(c, queryToken.Token, "name").Result()

@@ -32,7 +32,7 @@ func Read(c *gin.Context) {
 		todoObject := map[string]interface{}{
 			"id":         todoList[i].ID,
 			"title":      todoList[i].Title,
-			"created_at": todoList[i].CreatedAt,
+			"created_at": todoList[i].CreatedAt.Format("2006-01-02"),
 		}
 		data = append(data, todoObject)
 	}

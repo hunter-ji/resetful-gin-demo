@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6444dc1-ccdd-4dbe-852f-f85134f04b7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/dbCon.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user/logout.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/contextUserInfo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/request.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/todo/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/todo/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/delete.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/todo/read.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/read.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/info.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/info.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/login.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,25 +84,25 @@
     </state>
     <state x="360" y="193" key="#com.intellij.execution.impl.EditConfigurationsDialog/-2560.23.2560.1417/0.23.1792.1017@0.23.1792.1017" timestamp="1601991639677" />
     <state x="360" y="193" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1597567106214" />
-    <state width="1750" height="302" key="GridCell.Tab.0.bottom" timestamp="1601993920241">
+    <state width="1750" height="302" key="GridCell.Tab.0.bottom" timestamp="1601998253378">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1750" height="302" key="GridCell.Tab.0.bottom/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601993920241" />
+    <state width="1750" height="302" key="GridCell.Tab.0.bottom/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601998253378" />
     <state width="1750" height="277" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1597593834023" />
-    <state width="1750" height="302" key="GridCell.Tab.0.center" timestamp="1601993920241">
+    <state width="1750" height="302" key="GridCell.Tab.0.center" timestamp="1601998253377">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1750" height="302" key="GridCell.Tab.0.center/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601993920241" />
+    <state width="1750" height="302" key="GridCell.Tab.0.center/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601998253377" />
     <state width="1750" height="277" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1597593834022" />
-    <state width="1750" height="302" key="GridCell.Tab.0.left" timestamp="1601993920240">
+    <state width="1750" height="302" key="GridCell.Tab.0.left" timestamp="1601998253377">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1750" height="302" key="GridCell.Tab.0.left/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601993920240" />
+    <state width="1750" height="302" key="GridCell.Tab.0.left/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601998253377" />
     <state width="1750" height="277" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1597593834022" />
-    <state width="1750" height="302" key="GridCell.Tab.0.right" timestamp="1601993920241">
+    <state width="1750" height="302" key="GridCell.Tab.0.right" timestamp="1601998253377">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1750" height="302" key="GridCell.Tab.0.right/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601993920241" />
+    <state width="1750" height="302" key="GridCell.Tab.0.right/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601998253377" />
     <state width="1750" height="277" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1597593834023" />
   </component>
 </project>
