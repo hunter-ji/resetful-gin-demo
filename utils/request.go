@@ -9,16 +9,19 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-func whiteList(url *url.URL) bool {
+func whiteList(url *url.URL, method string) bool {
 	queryUrl := strings.Split(fmt.Sprint(url), "?")[0]
 
-	noAuthWhiteList := map[string]bool{
-		"/user/login": true,
-		"/ping":       true,
+	noAuthWhiteList := map[string]string{
+		"/user/login": "POST",
+		"/ping":       "GET",
 	}
 
 	if _, ok := noAuthWhiteList[queryUrl]; ok {
-		return true
+		if noAuthWhiteList[queryUrl] == method {
+			return true
+		}
+		return false
 	}
 	return false
 }
@@ -31,10 +34,9 @@ func Authorize() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
 		// 当路由不在白名单之中时进行token检测
-		if !whiteList(c.Request.URL) {
+		if !whiteList(c.Request.URL, c.Request.Method) {
 			var queryToken QueryToken
 			if c.ShouldBindQuery(&queryToken) != nil {
-				fmt.Println(queryToken.Token)
 				c.AbortWithStatusJSON(200, gin.H{
 					"code":    50008,
 					"message": "访问未授权",

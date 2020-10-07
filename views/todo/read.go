@@ -18,7 +18,7 @@ func Read(c *gin.Context) {
 
 	var todoList []models.Todo
 	db := models.DBConnect()
-	result := db.Where("user_id = ?", contextUid).Find(&todoList)
+	result := db.Order("id desc").Where("user_id = ?", contextUid).Find(&todoList)
 	if result.Error != nil {
 		c.JSON(200, gin.H{
 			"code":    20001,

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6444dc1-ccdd-4dbe-852f-f85134f04b7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routers/ping.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/todo/singleInfo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/todo.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/todo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/request.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/todo/change.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/change.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,5 +102,9 @@
     </state>
     <state width="1750" height="302" key="GridCell.Tab.0.right/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1601998253377" />
     <state width="1750" height="277" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1597593834023" />
+    <state x="561" y="268" width="670" height="676" key="search.everywhere.popup" timestamp="1602052490708">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="561" y="268" width="670" height="676" key="search.everywhere.popup/-2560.23.2560.1337/0.23.1792.1097@0.23.1792.1097" timestamp="1602052490708" />
   </component>
 </project>
