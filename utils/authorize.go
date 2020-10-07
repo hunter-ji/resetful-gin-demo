@@ -9,13 +9,17 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-func whiteList(url *url.URL, method string) bool {
-	queryUrl := strings.Split(fmt.Sprint(url), "?")[0]
-
-	noAuthWhiteList := map[string]string{
+func whiteList() map[string]string {
+	// 白名单
+	return map[string]string{
 		"/user/login": "POST",
 		"/ping":       "GET",
 	}
+}
+
+func withinWhiteList(url *url.URL, method string) bool {
+	noAuthWhiteList := whiteList()
+	queryUrl := strings.Split(fmt.Sprint(url), "?")[0]
 
 	if _, ok := noAuthWhiteList[queryUrl]; ok {
 		if noAuthWhiteList[queryUrl] == method {
@@ -34,7 +38,7 @@ func Authorize() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
 		// 当路由不在白名单之中时进行token检测
-		if !whiteList(c.Request.URL, c.Request.Method) {
+		if !withinWhiteList(c.Request.URL, c.Request.Method) {
 			var queryToken QueryToken
 			if c.ShouldBindQuery(&queryToken) != nil {
 				c.AbortWithStatusJSON(200, gin.H{
