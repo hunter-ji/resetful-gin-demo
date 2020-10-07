@@ -14,7 +14,11 @@ func main() {
 	r := gin.Default()
 	r.Use(cors.Default())
 	r.Use(utils.Authorize())
-	routers.LoadTodo(r)
+
+	// 加载路由
 	routers.LoadUser(r)
+	routers.LoadTodo(r)
+	routers.LoadPing(r)
+
 	r.Run()
 }

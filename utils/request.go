@@ -14,6 +14,7 @@ func whiteList(url *url.URL) bool {
 
 	noAuthWhiteList := map[string]bool{
 		"/user/login": true,
+		"/ping":       true,
 	}
 
 	if _, ok := noAuthWhiteList[queryUrl]; ok {
