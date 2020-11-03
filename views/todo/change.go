@@ -8,11 +8,11 @@ import (
 func Change(c *gin.Context) {
 	type ToDo struct {
 		Id    int `binding:"required"`
-		Title string
+		Title string `binding:"gte=0, lte=30"`
 	}
 
 	var todo ToDo
-	if c.ShouldBind(&todo) != nil {
+	if c.ShouldBindJSON(&todo) != nil {
 		c.JSON(200, gin.H{
 			"code":    40000,
 			"message": "参数不全",
