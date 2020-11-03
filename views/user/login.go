@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 	"resetful-gin-demo/models"
 	"resetful-gin-demo/utils"
 )
@@ -13,22 +12,15 @@ import (
 func Login(c *gin.Context) {
 	type User struct {
 		ID       int
-		Username string `binding:"required,min=2,max=6"`
-		Password string `binding:"required,min=6,max=20"`
+		Username string `binding:"required,gte=2,lte=6"`
+		Password string `binding:"required,gte=5,lte=20"`
 	}
 
 	var user User
 	if err := c.ShouldBindJSON(&user); err != nil {
 
-		valErr := err.(validator.ValidationErrors)
-		if valErr != nil {
-			c.JSON(200, gin.H{
-				"message": err.Error(),
-			})
-			return
-		}
-
 		c.JSON(400, gin.H{
+			"code":    40000,
 			"message": "参数不全",
 		})
 		return

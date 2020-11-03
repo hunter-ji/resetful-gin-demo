@@ -11,7 +11,7 @@ func SingleInfo(c *gin.Context) {
 	}
 
 	var singleTodo SingleTodo
-	if c.ShouldBind(&singleTodo) != nil {
+	if c.ShouldBindJSON(&singleTodo) != nil {
 		c.JSON(200, gin.H{
 			"code":    40000,
 			"message": "参数不全",

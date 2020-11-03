@@ -7,11 +7,11 @@ import (
 
 func Delete(c *gin.Context) {
 	type ToDo struct {
-		Id int `binding:"required"`
+		Id int `binding:"required,lte=0"`
 	}
 
 	var todo ToDo
-	if err := c.ShouldBind(&todo); err != nil {
+	if err := c.ShouldBindJSON(&todo); err != nil {
 		c.JSON(400, gin.H{
 			"message": err,
 		})

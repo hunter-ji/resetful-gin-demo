@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6444dc1-ccdd-4dbe-852f-f85134f04b7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gotest/todo/read_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/transValErrMsg.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/validator/user/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gotest/todo/create_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/gotest/todo/create_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gotest/user/info_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/gotest/user/info_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/transValErrMsg.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/todo/change.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/change.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/todo/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/todo/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/delete.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/todo/singleInfo.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/todo/singleInfo.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/login.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

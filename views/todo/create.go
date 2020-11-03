@@ -10,11 +10,11 @@ import (
 
 func Create(c *gin.Context) {
 	type ToDo struct {
-		Title string `binding:"required"`
+		Title string `binding:"required, gte=1, lte=30"`
 	}
 
 	var todo ToDo
-	if c.ShouldBind(&todo) != nil {
+	if c.ShouldBindJSON(&todo) != nil {
 		c.JSON(200, gin.H{
 			"code":    40000,
 			"message": "参数不全",
