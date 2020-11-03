@@ -15,5 +15,6 @@ func SetupRouter() *gin.Engine {
 	LoadUser(r)
 	LoadTodo(r)
 	LoadPing(r)
+
 	return r
 }

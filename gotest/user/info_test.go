@@ -1,6 +1,7 @@
 package gotest
 
 import (
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -13,14 +14,21 @@ import (
 func TestUserInfo(t *testing.T) {
 
 	token := gotest.GenToken()
+	method := "GET"
+	urlStr := "/user/info?token=" + token
 
 	router := routers.SetupRouter()
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/user/info?token="+token, nil)
+	req, _ := http.NewRequest(method, urlStr, nil)
 	router.ServeHTTP(w, req)
 
-	resCode := gotest.GetResCode(w.Body.String())
-
 	assert.Equal(t, 200, w.Code)
-	assert.Equal(t, 20000, resCode)
+
+	var response map[string]int
+	json.Unmarshal([]byte(w.Body.String()), &response)
+
+	value, exists := response["code"]
+
+	assert.True(t, exists)
+	assert.Equal(t, 20000, value)
 }

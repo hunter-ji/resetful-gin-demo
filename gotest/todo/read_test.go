@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
-	"net/url"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,19 +11,16 @@ import (
 	"resetful-gin-demo/routers"
 )
 
-func TestTodoCreate(t *testing.T) {
+func TestTodoRead(t *testing.T) {
 
 	token := gotest.GenToken()
 
-	method := "POST"
+	method := "GET"
 	urlStr := "/todo?token=" + token
-	data := url.Values{}
-	data.Add("Title", "hello")
 
 	router := routers.SetupRouter()
 	w := httptest.NewRecorder()
-	req, err := http.NewRequest(method, urlStr, strings.NewReader(data.Encode()))
-	req.Header.Set("Content-Type", "application/json")
+	req, err := http.NewRequest(method, urlStr, nil)
 	if err != nil {
 		panic("请求测试失败")
 	}
