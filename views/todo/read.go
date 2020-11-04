@@ -16,13 +16,14 @@ func Read(c *gin.Context) {
 		return
 	}
 
-	var todoList []models.Todo
 	db := models.DBConnect()
+
+	var todoList []models.Todo
 	result := db.Order("id desc").Where("user_id = ?", contextUid).Find(&todoList)
 	if result.Error != nil {
 		c.JSON(200, gin.H{
 			"code":    20001,
-			"message": "错误数据错误",
+			"message": "查询数据错误",
 		})
 		return
 	}

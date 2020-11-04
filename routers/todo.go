@@ -11,4 +11,5 @@ func LoadTodo(e *gin.Engine) {
 	e.PUT("/todo", todo.Change)
 	e.DELETE("/todo", todo.Delete)
 	e.POST("/todo/single", todo.SingleInfo)
+	e.GET("/todo/all", todo.ReadAllInfo)
 }
