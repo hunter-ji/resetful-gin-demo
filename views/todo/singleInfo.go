@@ -21,7 +21,9 @@ func SingleInfo(c *gin.Context) {
 
 	var todo models.Todo
 	db := models.DBConnect()
-	if db.Where("id = ?", singleTodo.Id).First(&todo).Error != nil {
+	singleInfoSelectErr := db.Get(&todo,
+		"select * from todo where todo_id = ? and is_deleted = 0", singleTodo.Id)
+	if singleInfoSelectErr != nil {
 		c.JSON(200, gin.H{
 			"code":    20001,
 			"message": "无效数据",
@@ -32,7 +34,7 @@ func SingleInfo(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"code": 20000,
 		"data": map[string]interface{}{
-			"id":         todo.ID,
+			"id":         todo.TodoID,
 			"title":      todo.Title,
 			"created_at": todo.CreatedAt.Format("2006-01-02"),
 			"updated_at": todo.UpdatedAt.Format("2006-01-02"),

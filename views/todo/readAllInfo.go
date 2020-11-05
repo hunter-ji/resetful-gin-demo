@@ -1,7 +1,7 @@
 package todo
 
 import (
-	"time"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"resetful-gin-demo/models"
@@ -9,22 +9,19 @@ import (
 
 func ReadAllInfo(c *gin.Context) {
 	type Info struct {
-		Username  string
-		TodoId    int
-		Title     string
-		UserId    int
-		CreatedAt time.Time
+		models.User
+		models.Todo
 	}
 
 	db := models.DBConnect()
 
 	var info []Info
-	result := db.Table("todos").
-		Order("todos.id desc").
-		Select("users.username, todos.id as todo_id, todos.title, todos.user_id, todos.created_at").
-		Joins("join users on users.id = todos.user_id").
-		Find(&info)
-	if result.Error != nil {
+	allInfoSelectErr := db.Select(&info,
+		"select user.username, todo.todo_id, todo.title, todo.user_id, todo.created_at "+
+			"from (select * from todo where is_deleted = 0) as todo "+
+			"inner join (select * from user where is_deleted = 0) as user on user.user_id = todo.user_id")
+	if allInfoSelectErr != nil {
+		fmt.Println(allInfoSelectErr)
 		c.JSON(200, gin.H{
 			"code":    20001,
 			"message": "查询数据错误",
@@ -35,11 +32,11 @@ func ReadAllInfo(c *gin.Context) {
 	var data []map[string]interface{}
 	for i := 0; i < len(info); i++ {
 		todoObject := map[string]interface{}{
-			"username":   info[i].Username,
-			"id":         info[i].TodoId,
-			"title":      info[i].Title,
-			"user_id":    info[i].UserId,
-			"created_at": info[i].CreatedAt.Format("2006-01-02"),
+			"username":   info[i].User.Username,
+			"todo_id":    info[i].Todo.TodoID,
+			"title":      info[i].Todo.Title,
+			"user_id":    info[i].User.UserID,
+			"created_at": info[i].Todo.CreatedAt.Format("2006-01-02"),
 		}
 		data = append(data, todoObject)
 	}
