@@ -7,25 +7,21 @@ import (
 
 func Delete(c *gin.Context) {
 	type ToDo struct {
-		Id int `binding:"required,lte=0"`
+		TodoId int `binding:"required" json:"todo_id"`
 	}
 
 	var todo ToDo
 	if err := c.ShouldBindJSON(&todo); err != nil {
 		c.JSON(400, gin.H{
-			"message": err,
-		})
-	}
-
-	db := models.DBConnect()
-	deleteRes := db.Delete(&models.Todo{}, todo.Id)
-	if deleteRes.Error != nil {
-		c.JSON(200, gin.H{
-			"code":    20001,
-			"message": "删除失败",
+			"message": "参数不全",
 		})
 		return
 	}
+
+	db := models.DBConnect()
+	tx := db.MustBegin()
+	tx.MustExec("update todo set is_deleted = 1 where todo_id = ?", todo.TodoId)
+	tx.Commit()
 
 	c.JSON(200, gin.H{
 		"code": 20000,

@@ -1,20 +1,13 @@
 package user
 
 import (
-	"time"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"resetful-gin-demo/models"
 )
 
 func Info(c *gin.Context) {
-
-	type User struct {
-		Id          int
-		Username    string
-		PhoneNumber string
-		CreatedAt   time.Time
-	}
 
 	userId, userIdErr := c.Get("uid")
 	if !userIdErr {
@@ -25,10 +18,11 @@ func Info(c *gin.Context) {
 		return
 	}
 
-	var user User
+	var user models.User
 	db := models.DBConnect()
-	result := db.Where("id = ?", userId).First(&user)
-	if result.Error != nil {
+	userSelectErr := db.Get(&user, "select * from user where user_id=? limit 1", userId)
+	if userSelectErr != nil {
+		fmt.Println(userSelectErr)
 		c.JSON(200, gin.H{
 			"code":    20001,
 			"message": "账户不存在",
@@ -41,7 +35,7 @@ func Info(c *gin.Context) {
 		"data": map[string]interface{}{
 			"username":     user.Username,
 			"phone_number": user.PhoneNumber,
-			"created_at":   user.CreatedAt.Format("2006-01-02"),
+			"created_at":   user.CreatedAt.Format("2006-01-02 12:15:15"),
 		},
 	})
 }

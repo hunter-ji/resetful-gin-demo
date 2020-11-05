@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 )
 
-func DBConnect() *gorm.DB {
+func DBConnect() *sqlx.DB {
 	env := os.Getenv("GIN_MODE")
 
 	var host, port, user, password, dbname string
@@ -25,18 +25,13 @@ func DBConnect() *gorm.DB {
 		password = "admin"
 		dbname = "gin_demo"
 	}
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		user, password, host, port, dbname)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
+	dbConfig := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", user, password, host, port, dbname)
+	db, err := sqlx.Connect("mysql", dbConfig)
 	if err != nil {
+		fmt.Println(err)
 		panic("failed to connect database")
 	}
 
 	return db
-}
-
-func CreateDB() {
-	db := DBConnect()
-	db.Migrator().CreateTable(&User{})
-	db.Migrator().CreateTable(&Todo{})
 }
