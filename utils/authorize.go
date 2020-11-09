@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis/v8"
 )
 
 func whiteList() map[string]string {
@@ -48,32 +47,30 @@ func Authorize() gin.HandlerFunc {
 				return
 			}
 
+			// 获取用户名和用户id
 			rdb := RedisConnect()
-			nameValue, nameErr := rdb.HGet(c, queryToken.Token, "name").Result()
-			if nameErr != nil {
-				if nameErr == redis.Nil {
-					c.AbortWithStatusJSON(200, gin.H{
-						"code":    50008,
-						"message": "无效token",
-					})
-					return
-				}
+			redisInfoRes := rdb.HMGet(c, queryToken.Token, "name", "uid")
+			if redisInfoRes.Err() != nil {
+				c.AbortWithStatusJSON(200, gin.H{
+					"code":    50008,
+					"message": "访问未授权",
+				})
+				return
 			}
 
-			userIdValue, userIdErr := rdb.HGet(c, queryToken.Token, "uid").Result()
-			if userIdErr != nil {
-				if userIdErr == redis.Nil {
+			for n, _ := range redisInfoRes.Val() {
+				if redisInfoRes.Val()[n] == nil {
 					c.AbortWithStatusJSON(200, gin.H{
 						"code":    50008,
-						"message": "无效token",
+						"message": "访问未授权",
 					})
 					return
 				}
 			}
 
 			// 上下文变量
-			c.Set("name", nameValue)
-			c.Set("uid", userIdValue)
+			c.Set("name", fmt.Sprintln(redisInfoRes.Val()[0]))
+			c.Set("uid", fmt.Sprintln(redisInfoRes.Val()[1]))
 			c.Set("token", queryToken.Token)
 
 		}

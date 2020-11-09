@@ -5,8 +5,6 @@ import (
 )
 
 func main() {
-
-	// models.CreateDB()
 	r := routers.SetupRouter()
 	r.Run()
 }
