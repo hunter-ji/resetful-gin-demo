@@ -29,7 +29,8 @@ func Login(c *gin.Context) {
 
 	var queryUser models.User
 	loginSelectErr := db.Get(&queryUser,
-		"SELECT user_id, username, password, phone_number FROM user WHERE username=? AND password=?",
+		"select user_id, username, password, phone_number from user "+
+			"where username = ? and password = ? and is_deleted = 0",
 		user.Username, user.Password)
 	if loginSelectErr != nil {
 		c.JSON(200, gin.H{

@@ -1,8 +1,6 @@
 package user
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 	"resetful-gin-demo/models"
 )
@@ -20,9 +18,8 @@ func Info(c *gin.Context) {
 
 	var user models.User
 	db := models.DBConnect()
-	userSelectErr := db.Get(&user, "select * from user where user_id=? limit 1", userId)
+	userSelectErr := db.Get(&user, "select * from user where user_id = ? and is_deleted = 0 limit 1", userId)
 	if userSelectErr != nil {
-		fmt.Println(userSelectErr)
 		c.JSON(200, gin.H{
 			"code":    20001,
 			"message": "账户不存在",
