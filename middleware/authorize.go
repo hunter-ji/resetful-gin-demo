@@ -1,4 +1,4 @@
-package utils
+package middleware
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"resetful-gin-demo/utils"
 )
 
 func whiteList() map[string]string {
@@ -48,7 +49,7 @@ func Authorize() gin.HandlerFunc {
 			}
 
 			// 获取用户名和用户id
-			rdb := RedisConnect()
+			rdb := utils.RedisConnect()
 			redisInfoRes := rdb.HMGet(c, queryToken.Token, "name", "uid")
 			if redisInfoRes.Err() != nil {
 				c.AbortWithStatusJSON(200, gin.H{
