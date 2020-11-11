@@ -1,26 +1,21 @@
-package gotest
+package tests
 
 import (
 	"encoding/json"
-	"net/http"
-	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"resetful-gin-demo/gotest"
-	"resetful-gin-demo/routers"
+	"resetful-gin-demo/tests"
 )
 
 func TestUserInfo(t *testing.T) {
 
-	token := gotest.GenToken()
-	method := "GET"
+	token := os.Getenv("TOKEN")
 	urlStr := "/user/info?token=" + token
 
-	router := routers.SetupRouter()
-	w := httptest.NewRecorder()
-	req, _ := http.NewRequest(method, urlStr, nil)
-	router.ServeHTTP(w, req)
+	res := tests.NewTest(urlStr)
+	w := res.Get()
 
 	assert.Equal(t, 200, w.Code)
 
